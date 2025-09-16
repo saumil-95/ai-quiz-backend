@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Quiz</title>
+</head>
+<body>
+  <h1>Create Quiz</h1>
+  <form action="/quiz/create-quiz" method="POST">
+    <label>Grade:</label>
+    <input type="text" name="grade" /><br>
+
+    <label>Subject:</label>
+    <input type="text" name="subject" /><br>
+
+    <label>Total Questions:</label>
+    <input type="number" name="totalQuestions" /><br>
+
+    <label>Max Score:</label>
+    <input type="number" name="maxScore" /><br>
+
+    <label>Difficulty:</label>
+    <input type="text" name="difficulty" /><br>
+
+    <button type="submit">Create Quiz</button>
+  </form>
+</body>
+</html>

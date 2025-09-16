@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz Result</title>
+</head>
+<body>
+  <h1>Result</h1>
+  <p>Score: <%= score %> / <%= total %></p>
+
+  <h2>Evaluation:</h2>
+  <ul>
+    <% evaluation.forEach(e => { %>
+      <li>
+        Question ID: <%= e.questionId %> | 
+        Your Answer: <%= e.userResponse %> | 
+        Correct: <%= e.correctAnswer %> | 
+        <%= e.isCorrect ? "✅" : "❌" %>
+      </li>
+    <% }) %>
+  </ul>
+
+  <h2>AI Suggestions:</h2>
+  <ul>
+    <% if (suggestions && suggestions.length > 0) { %>
+      <% suggestions.forEach(s => { %>
+        <li><%= s %></li>
+      <% }) %>
+    <% } else { %>
+      <li>No suggestions available.</li>
+    <% } %>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Quizzer</title>
+</head>
+<body>
+  <h1>Create Quiz</h1>
+  <form action="/quiz/create-quiz" method="POST">
+    <label>Grade: <input type="number" name="grade" required></label><br>
+    <label>Subject: <input type="text" name="subject" required></label><br>
+    <label>Total Questions: <input type="number" name="totalQuestions" required></label><br>
+    <label>Max Score: <input type="number" name="maxScore" required></label><br>
+    <label>Difficulty: 
+      <select name="difficulty" required>
+        <option value="EASY">EASY</option>
+        <option value="MEDIUM">MEDIUM</option>
+        <option value="HARD">HARD</option>
+      </select>
+    </label><br>
+    <button type="submit">Create Quiz</button>
+  </form>
+</body>
+</html>

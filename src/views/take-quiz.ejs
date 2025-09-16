@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Take Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .quiz-header {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .question-container {
+      background: white;
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .question-text {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      line-height: 1.4;
+    }
+    
+    .options-container {
+      margin-left: 10px;
+    }
+    
+    .option {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .option:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .option input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+    
+    .submit-button {
+      display: block;
+      width: 200px;
+      margin: 30px auto;
+      padding: 12px 24px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .submit-button:hover {
+      background-color: #2980b9;
+    }
+    
+    .question-number {
+      color: #7f8c8d;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-header">
+    <h1>Quiz: <%= quiz.subject %> (Grade <%= quiz.grade %>)</h1>
+    <p>Total Questions: <%= quiz.questions.length %></p>
+  </div>
+  
+  <form action="/quiz/<%= quiz.quizId %>/submit-ejs" method="POST">
+    <% quiz.questions.forEach((question, index) => { %>
+      <div class="question-container">
+        <div class="question-number">Question <%= index + 1 %> of <%= quiz.questions.length %></div>
+        <div class="question-text"><%= question.q %></div>
+        
+        <div class="options-container">
+          <% question.options.forEach(option => { %>
+            <label class="option">
+              <input type="radio" name="responses[<%= index %>][userResponse]" value="<%= option %>" required>
+              <%= option %>
+            </label>
+          <% }) %>
+        </div>
+        
+        <input type="hidden" name="responses[<%= index %>][questionId]" value="<%= question.questionId %>">
+      </div>
+    <% }) %>
+    
+    <button type="submit" class="submit-button">Submit Quiz</button>
+  </form>
+</body>
+
+</html>
